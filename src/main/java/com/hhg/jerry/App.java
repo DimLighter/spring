@@ -1,6 +1,11 @@
 package com.hhg.jerry;
 
 import com.hhg.jerry.bean.User;
+import com.hhg.jerry.service.UserService;
+import com.hhg.jerry.test.BaseClass;
+import com.hhg.jerry.test.Com1Class;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -10,15 +15,24 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App 
 {
+    static Logger logger = LoggerFactory.getLogger(App.class);
     public static void main( String[] args ) {
 
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml","applicationContext-service.xml");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml","applicationContext-bean.xml");
         User ted = applicationContext.getBean("ted",User.class);
-        System.out.println(ted);
+        logger.info(ted.toString());
         User dennis = (User)applicationContext.getBean("dennis");
-        System.out.println(dennis);
+        logger.info(dennis.toString());
 
-        System.out.println(applicationContext.getBeanDefinitionCount());
-        System.out.println(applicationContext.getBeanDefinitionNames());
+        logger.info(applicationContext.getBeanDefinitionCount()+"");
+        logger.info(applicationContext.getBeanDefinitionNames()+"");
+
+        UserService userService = applicationContext.getBean(UserService.class);
+        User dummyUser = userService.getById(1L);
+        logger.info(dummyUser.toString());
+
+        BaseClass baseClass = new Com1Class();
+        baseClass.logTest();
+        baseClass.baseClassLogMethod();
     }
 }
