@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired//(required = false)
-    @Qualifier("vipUserDao")
+    @Qualifier("userDao")
     private IUserDao iUserDao;
 
     public Long add(User user) {
