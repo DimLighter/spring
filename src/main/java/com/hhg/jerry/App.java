@@ -1,6 +1,5 @@
 package com.hhg.jerry;
 
-import com.hhg.jerry.aop.IAopService;
 import com.hhg.jerry.bean.User;
 import com.hhg.jerry.service.UserService;
 import com.hhg.jerry.test.BaseClass;
@@ -35,20 +34,8 @@ public class App
         baseClass.logTest();
         baseClass.baseClassLogMethod();
 
-        IAopService aopServiceA = applicationContext.getBean("aopServiceA", IAopService.class);
-        IAopService aopServiceB = applicationContext.getBean("aopServiceB", IAopService.class);
-        aopServiceA.service1();
-        System.out.println();
-        aopServiceA.addLog();
-        System.out.println();
-        aopServiceB.service1();
-        System.out.println();
-        aopServiceB.addLog();
-
-        System.out.println();
-        aopServiceA.divideZero();
-        aopServiceB.divideZero();
 
         System.out.println("APP finished");
+
     }
 }

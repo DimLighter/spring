@@ -18,7 +18,7 @@ public class LogAspect {
         logger.info("{} {} invoked... " , this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
-    public void aroundLog(ProceedingJoinPoint joinPoint){
+    public void aroundLog(ProceedingJoinPoint joinPoint) throws Throwable{
         try {
             logger.info("{} {} enter... " , this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
             joinPoint.proceed();

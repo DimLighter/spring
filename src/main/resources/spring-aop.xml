@@ -7,6 +7,8 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
+    <aop:aspectj-autoproxy />
+
     <bean name="aopServiceA" class="com.hhg.jerry.aop.xml.AopServiceA" />
     <bean name="aopServiceB" class="com.hhg.jerry.aop.xml.AopServiceB" />
     <bean name="timeAspect" class="com.hhg.jerry.aop.TimeAspect" />
