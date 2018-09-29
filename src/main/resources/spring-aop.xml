@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+
+    <aop:aspectj-autoproxy />
+
+    <bean name="aopServiceA" class="com.hhg.jerry.aop.xml.AopServiceA" />
+    <bean name="aopServiceB" class="com.hhg.jerry.aop.xml.AopServiceB" />
+    <bean name="timeAspect" class="com.hhg.jerry.aop.TimeAspect" />
+    <bean name="logAspect" class="com.hhg.jerry.aop.LogAspect" />
+
+    <aop:config>
+        <aop:pointcut id="aopService" expression="execution(* com.hhg.jerry.aop.xml..*.*(..))" />
+        <aop:pointcut id="aopServiceAdd" expression="execution(* com.hhg.jerry.aop.xml..*.add*(..))" />
+        <aop:pointcut id="aopServiceService" expression="execution(* com.hhg.jerry.aop.xml..*.service*(..))" />
+        <aop:aspect id="time" ref="timeAspect" order="1">
+            <aop:before method="now" pointcut-ref="aopServiceAdd" />
+            <aop:after method="now" pointcut-ref="aopServiceService" />
+        </aop:aspect>
+
+        <aop:aspect id="log" ref="logAspect" order="2">
+            <aop:before method="beforeLog" pointcut-ref="aopService"/>
+            <aop:after method="afterLog" pointcut-ref="aopService"/>
+            <aop:around method="aroundLog" pointcut-ref="aopService"/>
+            <aop:after-returning method="afterReturningLog" pointcut-ref="aopService" returning="val"/>
+            <aop:after-throwing method="afterThrowingLog" pointcut-ref="aopService" throwing="throwable"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

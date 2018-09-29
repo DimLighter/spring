@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean name="ted" class="com.hhg.jerry.bean.User">
+        <constructor-arg name="name" value="ted" type="java.lang.String"/>
+        <constructor-arg name="age" value="31" type="int"/>
+        <constructor-arg name="job" value="soft" type="java.lang.String"/>
+        <property name="languages">
+            <list>
+                <value>c#</value>
+                <value>java</value>
+                <value>c++</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="dennis" class="com.hhg.jerry.bean.User">
+        <constructor-arg name="name" value="dennis" type="java.lang.String"/>
+        <constructor-arg name="age" value="30" type="int"/>
+        <constructor-arg name="job" value="soft" type="java.lang.String"/>
+        <property name="languages">
+            <list>
+                <value>java</value>
+                <value>c#</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="user" class="com.hhg.jerry.bean.User"></bean>
+
+</beans>
