@@ -29,4 +29,21 @@
 
     <bean name="user" class="com.hhg.jerry.bean.User"></bean>
 
+    <bean id="beanPostProcessor" class="com.hhg.jerry.lifecycle.MyBeanPostProcessor"/>
+    <bean id="beanFactoryPostProcessor" class="com.hhg.jerry.lifecycle.MyBeanFactoryPostProcessor"/>
+    <bean id="instantiationAwareBeanPostProcessor" class="com.hhg.jerry.lifecycle.MyInstantiationAwareBeanPostProcessor"/>
+
+    <bean name="lifeCycle" class="com.hhg.jerry.lifecycle.LifeCycle" init-method="myInit" destroy-method="myDestroy">
+        <property name="name" value="dennis"/>
+        <property name="testProperty" value="555"/>
+    </bean>
+
+    <bean name="userFactoryBean" class="com.hhg.jerry.bean.UserFactoryBean"></bean>
+
+    <bean name="vipUserDao" class="com.hhg.jerry.dao.impl.VipUserDao"></bean>
+
+    <bean name="simpleFactoryBean" class="com.hhg.jerry.bean.SimpleFactoryBean">
+        <property name="className" value="com.hhg.jerry.dao.IUserDao"/>
+        <property name="target" ref="vipUserDao"/>
+    </bean>
 </beans>
