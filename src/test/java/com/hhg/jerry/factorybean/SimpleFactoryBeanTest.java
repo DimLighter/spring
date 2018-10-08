@@ -1,6 +1,7 @@
 package com.hhg.jerry.factorybean;
 
 import com.hhg.jerry.bean.User;
+import com.hhg.jerry.bean.UserFactoryBean;
 import com.hhg.jerry.dao.IUserDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,8 +21,12 @@ public class SimpleFactoryBeanTest {
     ApplicationContext applicationContext;
 
     @Test
-    public void simpleTest(){
+    public void simpleTest()throws Exception{
         User u = (User)applicationContext.getBean("userFactoryBean");
+        UserFactoryBean factoryBeanPojo = applicationContext.getBean("&userFactoryBean", UserFactoryBean.class);
+        if(factoryBeanPojo.getObject() == u){
+            System.out.println("they are same");
+        }
         System.out.println(u);
         IUserDao userDao = (IUserDao)applicationContext.getBean("simpleFactoryBean");
         userDao.add(u);
